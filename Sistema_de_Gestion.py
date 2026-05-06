@@ -71,7 +71,7 @@ class Cliente(EntidadSistema):
         return self.__nombre
         
     @property
-   def email(self):
+    def email(self):
 
        "Propiedad que devuelve el email del cliente."
 
