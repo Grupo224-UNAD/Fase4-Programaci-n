@@ -3,6 +3,7 @@
 # Se importan las clases necesarias desde el módulo core.
 from core import ValidationError, LogSystem
 from core import EntidadSistema
+from abc import ABC, abstractmethod
 
 class Cliente(EntidadSistema):
     
@@ -68,3 +69,20 @@ class Cliente(EntidadSistema):
         "Propiedad que devuelve el nombre del cliente."
         
         return self.__nombre
+        
+    @property
+   def email(self):
+
+       "Propiedad que devuelve el email del cliente."
+
+       return self.__email
+
+    @property
+    def telefono(self):
+
+        "Propiedad que devuelve el telefono del cliente."
+
+        return self.__telefono
+
+class Servicio(ABC):
+    def __init__(self, nombre)
