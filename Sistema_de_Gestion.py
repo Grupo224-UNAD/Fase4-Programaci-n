@@ -85,4 +85,69 @@ class Cliente(EntidadSistema):
         return self.__telefono
 
 class Servicio(ABC):
-    def __init__(self, nombre)
+    def __init__(self, nombre):
+        self._nombre = nombre
+    
+
+
+
+#---------------MÉTODOS SOBRECARGADOS--------------
+    def calcular_costo_final(self, precio_base, impuesto=0, descuento=0, cargo_extra=0):
+        
+        "Método que calcula el costo final de un servicio, aplicando un descuento si es necesario."
+        
+        # Se crea una instancia del sistema de logs.
+        logger = LogSystem()
+        
+        try:
+            # Se valida que el precio base sea un número positivo.
+            if precio_base < 0:
+                logger.write("Error: El precio base no puede ser negativo.")
+                # Si el precio base es negativo, se lanza una excepción de validación.
+                raise ValidationError("El precio base no puede ser negativo.")
+            
+            # Se valida que el impuesto no sea negativo.
+            if impuesto < 0:
+                logger.write("Error: El impuesto no puede ser negativo.")
+                # Si el impuesto es negativo, se lanza una excepción de validación.
+                raise ValidationError("El impuesto no puede ser negativo.")
+            
+            # Se valida que el descuento no sea negativo.
+            if descuento < 0:
+                logger.write("Error: El descuento no puede ser negativo.")
+                # Si el descuento es negativo, se lanza una excepción de validación.
+                raise ValidationError("El descuento no puede ser negativo.")
+            
+            # Se valida que el cargo extra no sea negativo.
+            if cargo_extra < 0:
+                logger.write("Error: El cargo extra no puede ser negativo.")
+                # Si el cargo extra es negativo, se lanza una excepción de validación.
+                raise ValidationError("El cargo extra no puede ser negativo.")
+            
+            # Se calcula el impuesto aplicado al precio base.
+            impuesto_aplicado = precio_base * (impuesto / 100)
+            
+            # Se suma el precio base más el impuesto. 
+            costo_con_impuesto = precio_base + impuesto_aplicado
+            
+            # Se agregan cargos adicionales al costo con impuesto.
+            costo_con_cargos = costo_con_impuesto + cargo_extra
+            
+            # Se aplica el descuento final calculado.
+            costo_final = costo_con_cargos - descuento
+            
+            # Se valida que el costo final no sea negativo.
+            if costo_final < 0:
+                logger.write("Error: El costo final no puede ser negativo.")
+                # Si el costo final es negativo, se lanza una excepción de validación.
+                raise ValidationError("El costo final no puede ser negativo.")
+            
+            # Se retorna el costo final calculado.
+            return costo_final
+        
+        # Se captura la excepción de validación.
+        except ValidationError as e:
+            # Se registra el error de validación en el sistema de logs.
+            logger.write(f"Error de validación: {e}")
+            # Se vuelve a lanzar la excepción para que el sistema de gestión la maneje.
+            raise
