@@ -1,6 +1,6 @@
 #---------------CLASE CLIENTE--------------
 
-# Se importan las clases necesarias desde el módulo core.
+# Se importan las clases necesarias desde el módulo core y abc.
 from core import ValidationError, LogSystem
 from core import EntidadSistema
 from abc import ABC, abstractmethod
@@ -83,10 +83,60 @@ class Cliente(EntidadSistema):
         "Propiedad que devuelve el telefono del cliente."
 
         return self.__telefono
-
+        
+#---------------CLASE SERVICIO --------------
 class Servicio(ABC):
-    def __init__(self, nombre):
-        self._nombre = nombre
+
+# Clase servicio para calcular costos, describir servicios y validar parámetros, ademas de implementar tres servicios.
+    
+    def __init__(self, nombre_servicio, precio_base):
+        self.nombre_servicio = nombre_servicio
+        self.precio_base = precio_base
+
+    # Se obliga a implementar el calculo de costos con sobrecarga.
+    @abstractmethod
+    def calcular_costos(self, **kwargs):
+        pass
+        
+    # Obliga a las subclases a dar una explicacion propia.
+    @abstractmethod
+    def describir_servicios(self):
+        pass
+
+    # Metodo para validar que el valor o los datos no sean negativos.
+    def validar_parametros(self, valor):
+        if valor < 0:
+            # Si el valor es negativo, lanza un mensaje de error.
+            raise ValidationError("Error en {self.nombre_servicio} el valor no puede ser negativo.")
+        return True
+
+# Se crea la clase reserva de salas y se definen los servicios incluidos.
+class reservas_de_salas(Servicio):
+    def describir_servicios(self):
+        return "Reserva de sala en {self.nombre_servicio} con todos los servicios incluidos."
+
+    # Se definen las horas y la inclusion de la categoria.
+    def calcular_costos(self, horas=1, incluye_categoria=False):
+        self.validar_parametros(horas, "horas")
+        # Logica: precio x hora + recargo opcional por categoria.
+        total = self.precio_base * horas
+        if incluye_categoria:
+            # Valor fijo de la Categoria.
+            total += 250000
+        return total
+        
+# Se crea la clase alquiler de equipos y se incluye el servicio tecnico.
+class alquiler_de_equipos(Servicio):
+    def describir_servicios(self):
+        return "Alquiler de equipo {self.nombre_servicio}. Ademas incluye servicio tecnico basico"
+
+    # Se definen los dias y el seguro opcional.
+    def calcular_costos(self, dias=1, seguro_opcional=True):
+        self.validar_paramteros(dias, "dias")
+        
+        
+    
+    
     
 
 
