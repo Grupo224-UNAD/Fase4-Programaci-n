@@ -113,7 +113,7 @@ class Servicio(ABC):
 # Se crea la clase reserva de salas y se definen los servicios incluidos.
 class reservas_de_salas(Servicio):
     def describir_servicios(self):
-        return "Reserva de sala en {self.nombre_servicio} con todos los servicios incluidos."
+        return "Reserva de sala: {self.nombre_servicio} con todos los servicios incluidos."
 
     # Se definen las horas y la inclusion de la categoria.
     def calcular_costos(self, horas=1, incluye_categoria=False):
@@ -128,19 +128,36 @@ class reservas_de_salas(Servicio):
 # Se crea la clase alquiler de equipos y se incluye el servicio tecnico.
 class alquiler_de_equipos(Servicio):
     def describir_servicios(self):
-        return "Alquiler de equipo {self.nombre_servicio}. Ademas incluye servicio tecnico basico"
+        return "Alquiler de equipo: {self.nombre_servicio}. Ademas incluye servicio tecnico basico"
 
     # Se definen los dias y el seguro opcional.
     def calcular_costos(self, dias=1, seguro_opcional=True):
-        self.validar_paramteros(dias, "dias")
-        
-        
-    
-    
-    
+        self.validar_parametros(dias, "dias")
+        # Logica: precio por dia con el descuento por mas de (5 dias).
+        total = self.precio_base * dias
+        if dias > 5:
+            # 20% de descuento.
+            total *= 0.80
+        if seguro_opcional:
+            # 10% del seguro por dia.
+            total += (self.precio_base 0.10) * dias
+            return total
 
+# Se crea la clase asesorias especializadas 
+class asesorias_especializadas(Servicio):
+    def describir_servicios(self):
+        return "Asesoria Especializada: {self.nombre_servicio}. Consultoria tecnica con los mejores expertos"
 
-
+    # Se definen las horas y la urgencia.
+    def calcular_costos(self, horas=1, es_de_urgencia=False):
+        self.validar_paramteros(horas, "horas")
+        # Logica: precio por hora con el recargo por la urgencia.
+        tarifa_final = self.precio_base
+        if es_de_urgencia:
+            # 50% de racargo por urgencia
+            tarifa_final *= 1.50
+            return tarifa_final * horas
+            
 #---------------MÉTODOS SOBRECARGADOS--------------
     def calcular_costo_final(self, precio_base, impuesto=0, descuento=0, cargo_extra=0):
         
