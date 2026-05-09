@@ -218,3 +218,97 @@ class asesorias_especializadas(Servicio):
             logger.write(f"Error de validación: {e}")
             # Se vuelve a lanzar la excepción para que el sistema de gestión la maneje.
             raise
+print("\n===== 10 OPERACIONES DEL SISTEMA =====")
+
+
+# OPERACIÓN 1
+try:
+    cliente1 = Cliente("Ana", "ana@gmail.com")
+    print("1. Cliente registrado correctamente")
+
+except Exception as e:
+    print("1. Error:", e)
+
+
+# OPERACIÓN 2
+try:
+    cliente2 = Cliente("", "correo")
+    print("2. Cliente registrado")
+
+except Exception as e:
+    print("2. Error controlado:", e)
+
+
+# OPERACIÓN 3
+try:
+    servicio1 = ReservaSala("Sala VIP", 100000)
+    print("3. Servicio creado correctamente")
+
+except Exception as e:
+    print("3. Error:", e)
+
+
+# OPERACIÓN 4
+try:
+    servicio2 = Asesoria("Marketing", -500)
+    print("4. Servicio creado")
+
+except Exception as e:
+    print("4. Error controlado:", e)
+
+
+# OPERACIÓN 5
+try:
+    reserva1 = Reserva(cliente1, servicio1, 2)
+    print("5. Reserva creada correctamente")
+
+except Exception as e:
+    print("5. Error:", e)
+
+
+# OPERACIÓN 6
+try:
+    reserva2 = Reserva(cliente1, servicio1, 0)
+    print("6. Reserva creada")
+
+except Exception as e:
+    print("6. Error controlado:", e)
+
+
+# OPERACIÓN 7
+try:
+    reserva1.confirmar()
+    print("7. Reserva confirmada")
+
+except Exception as e:
+    print("7. Error:", e)
+
+
+# OPERACIÓN 8
+try:
+    reserva1.cancelar()
+    print("8. Reserva cancelada")
+
+except Exception as e:
+    print("8. Error:", e)
+
+
+# OPERACIÓN 9
+try:
+    servicio3 = AlquilerEquipo("VideoBeam", 80000)
+
+    total = servicio3.calcular_costo()
+
+    print("9. Costo calculado:", total)
+
+except Exception as e:
+    print("9. Error:", e)
+
+
+# OPERACIÓN 10
+try:
+    print("10. Información final:")
+    print(reserva1.mostrar())
+
+except Exception as e:
+    print("10. Error:", e)
