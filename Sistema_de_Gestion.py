@@ -157,7 +157,187 @@ class asesorias_especializadas(Servicio):
             # 50% de racargo por urgencia
             tarifa_final *= 1.50
             return tarifa_final * horas
-            
+ 
+   #---------------CLASE RESERVA--------------
+
+class Reserva:
+
+    """
+    Clase que representa una reserva realizada por un cliente
+    para un servicio específico.
+    """
+
+    def __init__(self, cliente, servicio, duracion):
+
+        self.cliente = cliente
+        self.servicio = servicio
+        self.duracion = duracion
+        self.estado = "Pendiente"
+
+        logger = LogSystem()
+
+        try:
+
+            # VALIDAR CLIENTE
+            if cliente is None:
+                raise ValidationError(
+                    "La reserva debe tener un cliente."
+                )
+
+            # VALIDAR SERVICIO
+            if servicio is None:
+                raise ValidationError(
+                    "La reserva debe tener un servicio."
+                )
+
+            # VALIDAR DURACIÓN
+            if duracion <= 0:
+                raise ValidationError(
+                    "La duración debe ser mayor a cero."
+                )
+
+        except ValidationError as e:
+
+            logger.write(
+                f"Error al crear reserva: {e}"
+            )
+
+            raise
+
+    # MÉTODO PARA CONFIRMAR RESERVA
+    def confirmar(self):
+
+        logger = LogSystem()
+
+        try:
+
+            if self.estado == "Cancelada":
+                raise ValidationError(
+                    "No se puede confirmar una reserva cancelada."
+                )
+
+            self.estado = "Confirmada"
+
+            logger.write(
+                "Reserva confirmada correctamente."
+            )
+
+        except ValidationError as e:
+
+            logger.write(
+                f"Error al confirmar reserva: {e}"
+            )
+
+            raise
+
+    # MÉTODO PARA CANCELAR RESERVA
+    def cancelar(self):
+
+        logger = LogSystem()
+
+        try:
+
+            if self.estado == "Cancelada":
+                raise ValidationError(
+                    "La reserva ya está cancelada."
+                )
+
+            self.estado = "Cancelada"
+
+            logger.write(
+                "Reserva cancelada correctamente."
+            )
+
+        except ValidationError as e:
+
+            logger.write(
+                f"Error al cancelar reserva: {e}"
+            )
+
+            raise
+
+    # MÉTODO PARA PROCESAR RESERVA
+    def procesar_reserva(self):
+
+        logger = LogSystem()
+
+        try:
+
+            if self.estado != "Confirmada":
+                raise ValidationError(
+                    "La reserva debe estar confirmada para procesarse."
+                )
+
+            total = self.servicio.precio_base * self.duracion
+
+            logger.write(
+                f"Reserva procesada. Total: {total}"
+            )
+
+            return total
+
+        except Exception as e:
+
+            logger.write(
+                f"Error al procesar reserva: {e}"
+            )
+
+            raise
+
+        finally:
+
+            logger.write(
+                "Finalizó el procesamiento de la reserva."
+            )
+
+    # MOSTRAR INFORMACIÓN
+    def mostrar(self):
+
+        return (
+            f"Cliente: {self.cliente.nombre}\n"
+            f"Servicio: {self.servicio.nombre_servicio}\n"
+            f"Duración: {self.duracion}\n"
+            f"Estado: {self.estado}"
+        )     
+    print("\n===== PRUEBAS RESERVA =====")
+
+try:
+
+    cliente1 = Cliente(
+        "Carlos",
+        "carlos@gmail.com",
+        "3001234567"
+    )
+
+    servicio1 = reservas_de_salas(
+        "Sala VIP",
+        100000
+    )
+
+    reserva1 = Reserva(
+        cliente1,
+        servicio1,
+        3
+    )
+
+    print("\nReserva creada:")
+    print(reserva1.mostrar())
+
+    reserva1.confirmar()
+
+    total = reserva1.procesar_reserva()
+
+    print(f"\nCosto total: {total}")
+
+    reserva1.cancelar()
+
+    print("\nEstado final:")
+    print(reserva1.mostrar())
+
+except Exception as e:
+
+    print("Error:", e) 
+       
 #---------------MÉTODOS SOBRECARGADOS--------------
     def calcular_costo_final(self, precio_base, impuesto=0, descuento=0, cargo_extra=0):
         
