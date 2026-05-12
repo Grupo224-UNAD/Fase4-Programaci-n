@@ -1,0 +1,11 @@
+[2026-05-10 22:54:47.680467] Error de validación: El nombre del cliente no puede estar vacío.
+[2026-05-10 23:00:45.240969] Error de validación: El nombre del cliente no puede estar vacío.
+[2026-05-10 23:10:12.104922] Error de validación: El nombre del cliente no puede estar vacío.
+[2026-05-10 23:11:12.824892] Error de validación: El nombre del cliente no puede estar vacío.
+[2026-05-10 23:17:27.544312] Error de validación: El nombre del cliente no puede estar vacío.
+[2026-05-10 23:23:58.291982] Error de validación: El nombre del cliente no puede estar vacío.
+[2026-05-10 23:25:48.404475] Error de validación: El nombre del cliente no puede estar vacío.
+[2026-05-11 00:34:05.731826] Error de validación: El nombre del cliente no puede estar vacío.
+[2026-05-11 00:49:21.942279] Error de validación: El nombre del cliente no puede estar vacío.
+[2026-05-11 01:02:22.525788] Error de validación: El nombre del cliente no puede estar vacío.
+[2026-05-11 01:07:56.317629] Error de validación: El nombre del cliente no puede estar vacío.
