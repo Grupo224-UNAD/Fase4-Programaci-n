@@ -506,7 +506,10 @@ except ValidationError as e:
 
 # OPERACIÓN 3
 try:
-    servicio1 = ReservaSala("Sala VIP", 100000)
+    servicio1 = ReservaSala(
+        "Sala VIP",
+        100000
+        )
     print("3. Servicio creado correctamente")
     
 except Exception as e:
