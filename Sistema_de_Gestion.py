@@ -162,7 +162,6 @@ class ReservaSala(Servicio):
         )
 
     # Se definen las horas y la inclusion de la categoria.
-    @abstractmethod
     def calcular_costos(
         self, 
         horas=1,
