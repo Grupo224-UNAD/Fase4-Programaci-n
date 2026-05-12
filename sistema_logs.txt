@@ -11,3 +11,27 @@
 [2026-05-11 01:07:56.317629] Error de validación: El nombre del cliente no puede estar vacío.
 [2026-05-11 23:31:27.704420] Error de validación: El nombre del cliente no puede estar vacío.
 [2026-05-12 02:06:00.207550] Error de validación: El nombre del cliente no puede estar vacío.
+[2026-05-12 02:24:57.826308] Reserva confirmada correctamente.
+[2026-05-12 02:24:57.829948] Reserva procesada. Total: 300000
+[2026-05-12 02:24:57.831972] Finalizó el procesamiento de la reserva.
+[2026-05-12 02:24:57.834912] Reserva cancelada correctamente.
+[2026-05-12 02:24:57.838110] Error de validación: El nombre del cliente no puede estar vacío.
+[2026-05-12 02:24:57.841463] Error al crear reserva: La duración debe ser mayor a cero.
+[2026-05-12 02:24:57.844770] Reserva confirmada correctamente.
+[2026-05-12 02:24:57.846939] Reserva cancelada correctamente.
+[2026-05-12 10:00:07.938754] Reserva confirmada correctamente.
+[2026-05-12 10:00:08.693940] Reserva procesada. Total: 300000
+[2026-05-12 10:00:08.699461] Finalizó el procesamiento de la reserva.
+[2026-05-12 10:00:08.702403] Reserva cancelada correctamente.
+[2026-05-12 10:00:08.706075] Error de validación: El nombre del cliente no puede estar vacío.
+[2026-05-12 10:00:08.709160] Error al crear reserva: La duración debe ser mayor a cero.
+[2026-05-12 10:00:08.740198] Reserva confirmada correctamente.
+[2026-05-12 10:00:09.269483] Reserva cancelada correctamente.
+[2026-05-12 10:00:12.015701] Reserva confirmada correctamente.
+[2026-05-12 10:00:12.017859] Reserva procesada. Total: 300000
+[2026-05-12 10:00:12.019676] Finalizó el procesamiento de la reserva.
+[2026-05-12 10:00:12.022140] Reserva cancelada correctamente.
+[2026-05-12 10:00:12.027733] Error de validación: El nombre del cliente no puede estar vacío.
+[2026-05-12 10:00:12.031042] Error al crear reserva: La duración debe ser mayor a cero.
+[2026-05-12 10:00:12.040903] Reserva confirmada correctamente.
+[2026-05-12 10:00:12.045999] Reserva cancelada correctamente.
