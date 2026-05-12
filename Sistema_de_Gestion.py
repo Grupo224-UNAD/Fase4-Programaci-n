@@ -198,7 +198,8 @@ class AlquilerEquipo(Servicio):
         if seguro_opcional:
             # 10% del seguro por dia.
             total += (self.precio_base * 0.10) * dias
-            return total
+        
+        return total
 
 # SE CREA LA CLASE ASESORIAS ESPECIALIZADAS.
 class AsesoriaEspecializada(Servicio):
@@ -218,7 +219,8 @@ class AsesoriaEspecializada(Servicio):
         if es_de_urgencia:
             # 50% de racargo por urgencia
             tarifa_final *= 1.50
-            return tarifa_final * horas
+        
+        return tarifa_final * horas
 
 
  
@@ -334,8 +336,10 @@ class Reserva:
                 raise ValidationError(
                     "La reserva debe estar confirmada para procesarse."
                 )
-
-            total = self.servicio.precio_base * self.duracion
+                
+            total = self.servicio.calcular_costos(
+                horas=self.duracion
+            )
 
             logger.write(
                 f"Reserva procesada. Total: {total}"
